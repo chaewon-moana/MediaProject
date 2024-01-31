@@ -52,11 +52,24 @@ class TMDBAPIManager {
         AF.request(url, headers: header).responseDecodable(of: Popular.self) { response in
             switch response.result {
             case .success(let success):
-                print("success", success)
                 
                 completionHandler(success.results)
             case .failure(let failure):
                 print("fail", failure)
+            }
+        }
+    }
+
+    func fetchDetailModel(completionHandler: @escaping ((DetailModel) -> Void)) {
+        let url = baseURL + "tv/37854?language=ko-KR"
+        
+        AF.request(url, headers: header).responseDecodable(of: DetailModel.self) { response in
+            switch response.result {
+            case .success(let success):
+               // print("detail Model success", success)
+                completionHandler(success)
+            case .failure(let failure):
+                print("failure", failure)
             }
         }
     }

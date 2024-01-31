@@ -55,8 +55,8 @@ class MediaViewController: BaseViewController {
         }
         
         group.notify(queue: .main) {
-            print("그룹이 일 다해쪄용")
             self.tableView.reloadData()
+            //print(self.topRatedList)
         }
     }
     
