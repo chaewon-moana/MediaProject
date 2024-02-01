@@ -10,9 +10,13 @@ import UIKit
 class DramaInfoTableViewCell: BaseTableViewCell {
     
     let posterImage = UIImageView()
-    let titleLabel = UILabel()
+    let nameLabel = UILabel()
+    let overviewLabel = UILabel()
+    let lastEpisode = UILabel() //가장 최근화로 이동하는,,,
+    let nextEpisode = UILabel() //다음화로 이동
     
-
+    
+    
     override func setAddView() {
         
     }
