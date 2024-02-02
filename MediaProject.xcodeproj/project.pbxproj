@@ -10,6 +10,7 @@
 		DE8912FF2B6A63A3008E561C /* DramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8912FE2B6A63A3008E561C /* DramaViewController.swift */; };
 		DE8913022B6A6A64008E561C /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913012B6A6A64008E561C /* DetailModel.swift */; };
 		DE8913042B6A6E40008E561C /* DramaInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */; };
+		DE8913142B6D0B9A008E561C /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913132B6D0B9A008E561C /* MainTabBarViewController.swift */; };
 		DECC36B32B68F766008E8B41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECC36B22B68F766008E8B41 /* AppDelegate.swift */; };
 		DECC36B52B68F766008E8B41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECC36B42B68F766008E8B41 /* SceneDelegate.swift */; };
 		DECC36B72B68F766008E8B41 /* MediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECC36B62B68F766008E8B41 /* MediaViewController.swift */; };
@@ -38,6 +39,7 @@
 		DE8912FE2B6A63A3008E561C /* DramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaViewController.swift; sourceTree = "<group>"; };
 		DE8913012B6A6A64008E561C /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaInfoTableViewCell.swift; sourceTree = "<group>"; };
+		DE8913132B6D0B9A008E561C /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		DECC36AF2B68F766008E8B41 /* MediaProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DECC36B22B68F766008E8B41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DECC36B42B68F766008E8B41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				DECC36BB2B68F768008E8B41 /* Assets.xcassets */,
 				DECC36BD2B68F768008E8B41 /* LaunchScreen.storyboard */,
 				DECC36C02B68F768008E8B41 /* Info.plist */,
+				DE8913132B6D0B9A008E561C /* MainTabBarViewController.swift */,
 			);
 			path = MediaProject;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				DECC36B72B68F766008E8B41 /* MediaViewController.swift in Sources */,
 				DE8913042B6A6E40008E561C /* DramaInfoTableViewCell.swift in Sources */,
 				DECC36B32B68F766008E8B41 /* AppDelegate.swift in Sources */,
+				DE8913142B6D0B9A008E561C /* MainTabBarViewController.swift in Sources */,
 				DECC36C82B68F8E2008E8B41 /* UIView+Extension.swift in Sources */,
 				DE8912FF2B6A63A3008E561C /* DramaViewController.swift in Sources */,
 				DECC36CB2B69C643008E8B41 /* TMDBAPIManager.swift in Sources */,
