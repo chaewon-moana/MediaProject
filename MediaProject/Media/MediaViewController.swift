@@ -9,12 +9,6 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-protocol CodeBaseProtocol {
-    func setAddView()
-    func configureAttribute()
-    func configureLayout()
-}
-
 class MediaViewController: BaseViewController {
 
     let tmdbManager = TMDBAPIManager.shared
@@ -22,6 +16,7 @@ class MediaViewController: BaseViewController {
         let view = UITableView(frame: .zero)
         view.delegate = self
         view.dataSource = self
+        view.register(MediaTableViewCell.self, forCellReuseIdentifier: "MediaTableViewCell")
         return view
     }()
     
@@ -29,10 +24,10 @@ class MediaViewController: BaseViewController {
     var posterList: [TrendTV] = []
     var topRatedList: [TopTV] = []
     var popularList: [PopularTV] = []
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.register(MediaTableViewCell.self, forCellReuseIdentifier: "MediaTableViewCell")
         
         let group = DispatchGroup()
         
@@ -75,39 +70,18 @@ class MediaViewController: BaseViewController {
     }
 }
 
-extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MediaTableViewCell", for: indexPath) as! MediaTableViewCell
-        
-        cell.categoryLabel.text = categoryList[indexPath.row]
-        
-        cell.collectionView.dataSource = self
-        cell.collectionView.delegate = self
-        cell.collectionView.register(MediaCollectionViewCell.self, forCellWithReuseIdentifier: "MediaCollectionViewCell")
-        cell.collectionView.tag = indexPath.item
-        cell.collectionView.reloadData()
-        
-        return cell
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-    
-}
+
 
 extension MediaViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posterList.count
     }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MediaCollectionViewCell", for: indexPath) as! MediaCollectionViewCell
-        let baseURL = "https://image.tmdb.org/t/p/w500"
         
+        let baseURL = "https://image.tmdb.org/t/p/w500"
         if collectionView.tag == 0 {
             let item = posterList[indexPath.item]
             let url = URL(string: baseURL + item.poster)
@@ -122,19 +96,55 @@ extension MediaViewController: UICollectionViewDelegate, UICollectionViewDataSou
             cell.ratedLabel.isHidden = false
             cell.ratedLabel.text = String(indexPath.item + 1)
             
-        } else if collectionView.tag == 2 {
+        } else {
             let item = popularList[indexPath.item]
             let url = URL(string: baseURL + (item.poster_path ?? "/qPmVoG8G9tc1nN8ZwGV2zYcknit.jpg")) 
             cell.posterImage.kf.setImage(with: url)
             cell.adultLabel.isHidden = item.adult ? false : true
-
-        } else {
-            
         }
+        //collectionView.reloadData()
         
-        collectionView.reloadData()
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DramaViewController()
+        let item = posterList[indexPath.item]
+        
+        vc.list = Detail(id: item.id, name: item.name, poster: item.poster, backdrop: item.backdrop, rating: 5.0, overview: item.overview)
+        
+        navigationController?.pushViewController(vc, animated: true)
+        
+        print(posterList[indexPath.item].name)
+    }
+    
 
+
+}
+
+
+extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MediaTableViewCell", for: indexPath) as! MediaTableViewCell
+        cell.categoryLabel.text = categoryList[indexPath.row]
+        
+        cell.collectionView.dataSource = self
+        cell.collectionView.delegate = self
+        cell.collectionView.register(MediaCollectionViewCell.self, forCellWithReuseIdentifier: "MediaCollectionViewCell")
+        cell.collectionView.tag = indexPath.item
+        cell.collectionView.reloadData()
+
+        
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+ 
+
+    
 }

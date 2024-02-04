@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE7D54E92B6F5FD90060BE42 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DE7D54E82B6F5FD90060BE42 /* Kingfisher */; };
 		DE8912FF2B6A63A3008E561C /* DramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8912FE2B6A63A3008E561C /* DramaViewController.swift */; };
 		DE8913022B6A6A64008E561C /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913012B6A6A64008E561C /* DetailModel.swift */; };
 		DE8913042B6A6E40008E561C /* DramaInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */; };
 		DE8913142B6D0B9A008E561C /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913132B6D0B9A008E561C /* MainTabBarViewController.swift */; };
+		DE8913162B6D11A4008E561C /* DramaCreditsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913152B6D11A4008E561C /* DramaCreditsCollectionViewCell.swift */; };
+		DE8913182B6D1387008E561C /* DramaCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913172B6D1387008E561C /* DramaCredits.swift */; };
+		DE89131A2B6D1B0A008E561C /* CreditsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913192B6D1B0A008E561C /* CreditsTableViewCell.swift */; };
+		DE89131C2B6E2833008E561C /* DramaRecommandation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE89131B2B6E2833008E561C /* DramaRecommandation.swift */; };
+		DEC1F2AE2B6E2FD700EA4987 /* DramaInfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC1F2AD2B6E2FD700EA4987 /* DramaInfoLabel.swift */; };
 		DECC36B32B68F766008E8B41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECC36B22B68F766008E8B41 /* AppDelegate.swift */; };
 		DECC36B52B68F766008E8B41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECC36B42B68F766008E8B41 /* SceneDelegate.swift */; };
 		DECC36B72B68F766008E8B41 /* MediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECC36B62B68F766008E8B41 /* MediaViewController.swift */; };
@@ -40,6 +46,11 @@
 		DE8913012B6A6A64008E561C /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaInfoTableViewCell.swift; sourceTree = "<group>"; };
 		DE8913132B6D0B9A008E561C /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		DE8913152B6D11A4008E561C /* DramaCreditsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaCreditsCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE8913172B6D1387008E561C /* DramaCredits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaCredits.swift; sourceTree = "<group>"; };
+		DE8913192B6D1B0A008E561C /* CreditsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsTableViewCell.swift; sourceTree = "<group>"; };
+		DE89131B2B6E2833008E561C /* DramaRecommandation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaRecommandation.swift; sourceTree = "<group>"; };
+		DEC1F2AD2B6E2FD700EA4987 /* DramaInfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaInfoLabel.swift; sourceTree = "<group>"; };
 		DECC36AF2B68F766008E8B41 /* MediaProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DECC36B22B68F766008E8B41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DECC36B42B68F766008E8B41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +82,7 @@
 				DECC36D72B69C752008E8B41 /* Alamofire in Frameworks */,
 				DECC36D22B69C74B008E8B41 /* SnapKit in Frameworks */,
 				DECC36D42B69C74B008E8B41 /* SnapKit-Dynamic in Frameworks */,
+				DE7D54E92B6F5FD90060BE42 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,10 +92,21 @@
 		DE8912FD2B6A638D008E561C /* Drama */ = {
 			isa = PBXGroup;
 			children = (
+				DEC1F2AC2B6E2FC100EA4987 /* CustomView */,
 				DE8912FE2B6A63A3008E561C /* DramaViewController.swift */,
+				DE8913192B6D1B0A008E561C /* CreditsTableViewCell.swift */,
 				DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */,
+				DE8913152B6D11A4008E561C /* DramaCreditsCollectionViewCell.swift */,
 			);
 			path = Drama;
+			sourceTree = "<group>";
+		};
+		DEC1F2AC2B6E2FC100EA4987 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				DEC1F2AD2B6E2FD700EA4987 /* DramaInfoLabel.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		DECC36A62B68F766008E8B41 = {
@@ -139,6 +162,8 @@
 				DECC36F42B6A1D17008E8B41 /* TopRated.swift */,
 				DECC36F62B6A4BB6008E8B41 /* Popular.swift */,
 				DE8913012B6A6A64008E561C /* DetailModel.swift */,
+				DE8913172B6D1387008E561C /* DramaCredits.swift */,
+				DE89131B2B6E2833008E561C /* DramaRecommandation.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -184,6 +209,7 @@
 				DECC36D32B69C74B008E8B41 /* SnapKit-Dynamic */,
 				DECC36D62B69C752008E8B41 /* Alamofire */,
 				DECC36D92B69C759008E8B41 /* Kingfisher */,
+				DE7D54E82B6F5FD90060BE42 /* Kingfisher */,
 			);
 			productName = MediaProject;
 			productReference = DECC36AF2B68F766008E8B41 /* MediaProject.app */;
@@ -248,16 +274,21 @@
 			files = (
 				DECC36B72B68F766008E8B41 /* MediaViewController.swift in Sources */,
 				DE8913042B6A6E40008E561C /* DramaInfoTableViewCell.swift in Sources */,
+				DE8913162B6D11A4008E561C /* DramaCreditsCollectionViewCell.swift in Sources */,
 				DECC36B32B68F766008E8B41 /* AppDelegate.swift in Sources */,
 				DE8913142B6D0B9A008E561C /* MainTabBarViewController.swift in Sources */,
 				DECC36C82B68F8E2008E8B41 /* UIView+Extension.swift in Sources */,
 				DE8912FF2B6A63A3008E561C /* DramaViewController.swift in Sources */,
 				DECC36CB2B69C643008E8B41 /* TMDBAPIManager.swift in Sources */,
+				DE8913182B6D1387008E561C /* DramaCredits.swift in Sources */,
 				DE8913022B6A6A64008E561C /* DetailModel.swift in Sources */,
 				DECC36ED2B6A151F008E8B41 /* MediaTableViewCell.swift in Sources */,
 				DECC36CF2B69C665008E8B41 /* APIKey.swift in Sources */,
+				DE89131C2B6E2833008E561C /* DramaRecommandation.swift in Sources */,
 				DECC36EA2B6A1415008E8B41 /* BaseViewController.swift in Sources */,
+				DEC1F2AE2B6E2FD700EA4987 /* DramaInfoLabel.swift in Sources */,
 				DECC36F32B6A18A2008E8B41 /* MediaCollectionViewCell.swift in Sources */,
+				DE89131A2B6D1B0A008E561C /* CreditsTableViewCell.swift in Sources */,
 				DECC36B52B68F766008E8B41 /* SceneDelegate.swift in Sources */,
 				DECC36F52B6A1D17008E8B41 /* TopRated.swift in Sources */,
 				DECC36EF2B6A159D008E8B41 /* BaseTableViewCell.swift in Sources */,
@@ -515,6 +546,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DE7D54E82B6F5FD90060BE42 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DECC36D82B69C759008E8B41 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		DECC36D12B69C74B008E8B41 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DECC36D02B69C74B008E8B41 /* XCRemoteSwiftPackageReference "SnapKit" */;

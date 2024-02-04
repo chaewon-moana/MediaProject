@@ -16,8 +16,11 @@ struct Detail: Decodable {
     let id: Int
     let name: String
     let poster: String?
+    let backdrop: String?
+    let rating: Double
+    let overview: String?
 //    let adult: Bool
-//    let backdrop: String
+
 //    let runtime: [Int]
 //    let firstAirDate: String
 //    let genres: [Genre]
@@ -35,8 +38,9 @@ struct Detail: Decodable {
         case id
         case name
         case poster = "poster_path"
-        
-//        case backdrop = "bachdrop_path"
+        case backdrop = "backdrop_path"
+        case rating = "vote_average"
+        case overview
 //        case runtime = "episode_run_time"
 //        case firstAirDate = "first_air_date"
 //        case genres

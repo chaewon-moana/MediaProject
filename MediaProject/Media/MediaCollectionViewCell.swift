@@ -8,20 +8,32 @@
 import UIKit
 import SnapKit
 
-class MediaCollectionViewCell: BaseCollectionViewCell {
+class MediaCollectionViewCell: UICollectionViewCell {
     
     let posterImage = UIImageView()
     let titleLabel = UILabel()
     let ratedLabel = UILabel()
     let adultLabel = UILabel()
     
-    override func setAddView() {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setAddView()
+        configureLayout()
+        configureAttribute()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setAddView() {
         contentView.addSubviews([titleLabel, posterImage, ratedLabel, adultLabel])
     }
     
-    override func configureAttribute() {
+    func configureAttribute() {
         backgroundColor = .black
-                
+        
         ratedLabel.backgroundColor = .systemRed
         ratedLabel.textColor = .white
         ratedLabel.textAlignment = .center
@@ -40,15 +52,15 @@ class MediaCollectionViewCell: BaseCollectionViewCell {
         
     }
     
-    override func configureLayout() {
+    func configureLayout() {
         titleLabel.snp.makeConstraints { make in
             make.horizontalEdges.bottom.equalTo(contentView.safeAreaLayoutGuide)
             make.height.equalTo(20)
         }
         
         posterImage.snp.makeConstraints { make in
-            make.edges.equalTo(contentView.safeAreaLayoutGuide)
-            //make.size.equalTo(100)
+            make.edges.equalTo(contentView)
+            make.size.equalTo(100)
         }
         
         ratedLabel.snp.makeConstraints { make in

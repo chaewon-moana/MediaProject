@@ -11,14 +11,13 @@ import SnapKit
 class MediaTableViewCell: BaseTableViewCell {
 
     let categoryLabel = UILabel()
-    lazy var collectionView: UICollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: setUICollectionViewLayout())
-        return view
-    }()
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: setUICollectionViewLayout())
+
     
     override func setAddView() {
-        contentView.addSubview(categoryLabel)
         contentView.addSubview(collectionView)
+        contentView.addSubview(categoryLabel)
+        
     }
     
     override func configureLayout() {
@@ -28,7 +27,7 @@ class MediaTableViewCell: BaseTableViewCell {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.horizontalEdges.bottom.equalTo(contentView.safeAreaLayoutGuide)
+            make.horizontalEdges.bottom.equalTo(contentView)
             make.top.equalTo(categoryLabel.snp.bottom)
         }
     }
@@ -41,7 +40,7 @@ class MediaTableViewCell: BaseTableViewCell {
         collectionView.backgroundColor = .black
     }
     
-    func setUICollectionViewLayout() -> UICollectionViewFlowLayout {
+    static func setUICollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 120, height: 160)
         layout.minimumLineSpacing = 10

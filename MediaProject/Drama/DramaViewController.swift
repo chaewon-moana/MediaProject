@@ -15,25 +15,46 @@ class DramaViewController: BaseViewController{
     let titleLabel = UILabel()
     
     let tmdbManager = TMDBAPIManager.shared
-    var list: Detail = Detail(id: 0, name: "", poster: "")
+    var list: Detail = Detail(id: 0, name: "", poster: "", backdrop: "", rating: 0.0, overview: "")
+    var creditList: DramaCredits = DramaCredits(cast: [])
+    var recommandationList: [Recommandation] = []
     
+    var index: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let group = DispatchGroup()
         
+        view.backgroundColor = .black
+        
         dramaInfoTableView.delegate = self
         dramaInfoTableView.dataSource = self
         
-        dramaInfoTableView.rowHeight = dramaInfoTableView.estimatedRowHeight
+        //dramaInfoTableView.rowHeight = UITableView.automaticDimension
+        
         group.enter()
-        tmdbManager.fetchDetailModel { model in
-            print(model)
+        tmdbManager.fetchDetailModel(id: list.id) { model in
             self.list = model
-            self.dramaInfoTableView.reloadData()
             group.leave()
         }
         
+        group.enter()
+        tmdbManager.fetchCreditsModel(id: list.id) { credits in
+            self.creditList = credits
+            group.leave()
+        }
+        
+        group.enter()
+        tmdbManager.fetchRecommandationModel(id: list.id) { recommandation in
+            self.recommandationList = recommandation.results
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            self.dramaInfoTableView.reloadData()
+        }
+        
+        dramaInfoTableView.register(CreditsTableViewCell.self, forCellReuseIdentifier: "CreditsTableViewCell")
         dramaInfoTableView.register(DramaInfoTableViewCell.self, forCellReuseIdentifier: "DramaInfoTableViewCell")
     }
     
@@ -54,30 +75,81 @@ class DramaViewController: BaseViewController{
     }
 
     override func configureAttribute() {
-        titleLabel.text = list.poster
-        titleLabel.textColor = .red
+        titleLabel.text = list.name
+        titleLabel.textColor = .white
     }
-
 }
-
 
 extension DramaViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DramaInfoTableViewCell", for: indexPath) as! DramaInfoTableViewCell
-        
         if indexPath.row == 0 {
+            let Infocell = tableView.dequeueReusableCell(withIdentifier: "DramaInfoTableViewCell", for: indexPath) as! DramaInfoTableViewCell
+            
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let url = URL(string:baseURL + (list.poster ?? ""))
-            cell.posterImage.kf.setImage(with: url)
-            cell.nameLabel.text = list.name
+            Infocell.posterImage.kf.setImage(with: url)
+            Infocell.nameLabel.text = "제목 : \(list.name)"
+            Infocell.backImageView.kf.setImage(with: URL(string: baseURL + (list.backdrop ?? "")))
+            Infocell.ratingLabel.text = "평점 : \(list.rating)"
+            Infocell.overviewLabel.text = list.overview
+            return Infocell
+            
+        } else {
+            let creditCell = tableView.dequeueReusableCell(withIdentifier: "CreditsTableViewCell", for: indexPath) as! CreditsTableViewCell
+            
+            creditCell.collectionView.delegate = self
+            creditCell.collectionView.dataSource = self
+            
+            creditCell.collectionView.register(DramaCreditsCollectionViewCell.self, forCellWithReuseIdentifier: "DramaCreditsCollectionViewCell")
+            creditCell.collectionView.reloadData()
+            creditCell.collectionView.tag = indexPath.item
+
+            return creditCell
+            
         }
-        
-        return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 500
+        } else {
+            return 180
+        }
+    }
     
+}
+
+extension DramaViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return creditList.cast.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let creditsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DramaCreditsCollectionViewCell", for: indexPath) as! DramaCreditsCollectionViewCell
+        let baseURL = "https://image.tmdb.org/t/p/w500"
+        
+        if collectionView.tag == 1 {
+            let url = URL(string: baseURL + (creditList.cast[indexPath.item].profile_path ?? ""))
+            creditsCell.image.kf.setImage(with: url)
+            creditsCell.name.text = creditList.cast[indexPath.item].name
+            
+            
+        } else {
+            let url = URL(string: baseURL + (recommandationList[indexPath.item].poster_path ?? ""))
+            creditsCell.image.kf.setImage(with: url)
+            creditsCell.name.text = recommandationList[indexPath.item].name
+            
+        }
+        return creditsCell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("픽미픽미업")
+    }
 }

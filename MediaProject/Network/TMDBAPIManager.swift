@@ -61,8 +61,8 @@ class TMDBAPIManager {
         }
     }
 
-    func fetchDetailModel(completionHandler: @escaping ((Detail) -> Void)) {
-        let url = baseURL + "tv/37854?language=ko-KR"
+    func fetchDetailModel(id: Int,completionHandler: @escaping ((Detail) -> Void)) {
+        let url = baseURL + "tv/\(id)?language=ko-KR"
         
         AF.request(url, headers: header).responseDecodable(of: Detail.self) { response in
             switch response.result {
@@ -71,6 +71,32 @@ class TMDBAPIManager {
                 completionHandler(success)
             case .failure(let failure):
                 print("failure", failure)
+            }
+        }
+    }
+    
+    func fetchCreditsModel(id: Int,complectionHandler: @escaping ((DramaCredits) -> Void)) {
+        let url = baseURL + "tv/\(id)/aggregate_credits?language=ko-KR"
+        
+        AF.request(url, headers: header).responseDecodable(of: DramaCredits.self) { response in
+            switch response.result {
+            case .success(let success):
+                complectionHandler(success)
+            case .failure(let failure):
+                print("캐스팅 정보 실패" ,failure)
+            }
+        }
+    }
+    
+    func fetchRecommandationModel(id: Int, complectionHandler: @escaping ((DramaRecommandation) -> Void)) {
+        let url = baseURL + "tv/\(id)/recommendations"
+        
+        AF.request(url, headers: header).responseDecodable(of: DramaRecommandation.self) { response in
+            switch response.result {
+            case .success(let success):
+                complectionHandler(success)
+            case .failure(let failure):
+                print("땡!!", failure)
             }
         }
     }
