@@ -14,15 +14,15 @@ class MainTabBarViewController: UITabBarController {
 
         let tabbar = UITabBarController()
         
-        let mediaVC = UINavigationController(rootViewController: MediaViewController())
-        let dramaVC = UINavigationController(rootViewController: DramaViewController())
+        let movieVC = UINavigationController(rootViewController: MovieViewController())
+        let dramaVC = UINavigationController(rootViewController: MediaViewController())
         
-        mediaVC.tabBarItem = UITabBarItem(title: "미디어", image: UIImage(systemName: "magnifyingglass"), tag: 0)
+        movieVC.tabBarItem = UITabBarItem(title: "영화", image: UIImage(systemName: "magnifyingglass"), tag: 0)
         dramaVC.tabBarItem = UITabBarItem(title: "드라마", image: UIImage(systemName: "person"), tag: 1)
         
-        tabBar.barTintColor = .yellow
+        tabBar.barTintColor = .black
         tabBar.tintColor = .white
-        viewControllers = [mediaVC, dramaVC]
+        viewControllers = [dramaVC, movieVC]
     }
 
 }

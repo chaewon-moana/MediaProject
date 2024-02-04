@@ -16,7 +16,7 @@ struct TrendTV: Decodable {
     let id: Int
     let backdrop: String
     let name: String
-    let original_name: String
+    //let original_name: String
     let overview: String
     let poster: String
     
@@ -26,7 +26,7 @@ struct TrendTV: Decodable {
         case id
         case backdrop = "backdrop_path"
         case name
-        case original_name
+        //case original_name
         case overview
         case poster = "poster_path"
     }

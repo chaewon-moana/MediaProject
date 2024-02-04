@@ -11,7 +11,7 @@ import SnapKit
 class CreditsTableViewCell: BaseTableViewCell {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
-    let creditLabel = UILabel()
+    var creditLabel = UILabel()
     
     static func configureCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()

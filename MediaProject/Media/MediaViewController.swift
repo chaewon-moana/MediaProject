@@ -11,7 +11,7 @@ import Kingfisher
 
 class MediaViewController: BaseViewController {
 
-    let tmdbManager = TMDBAPIManager.shared
+    let searchBar = UISearchBar()
     lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero)
         view.delegate = self
@@ -20,6 +20,7 @@ class MediaViewController: BaseViewController {
         return view
     }()
     
+    let tmdbManager = TMDBAPIManager.shared
     let categoryList = ["Trend", "TopRated", "Popular"]
     var posterList: [TrendTV] = []
     var topRatedList: [TopTV] = []
@@ -56,16 +57,23 @@ class MediaViewController: BaseViewController {
     }
     
     override func setAddView() {
-        view.addSubview(tableView)
+        view.addSubviews([searchBar, tableView])
     }
     
     override func configureAttribute() {
         tableView.backgroundColor = .black
+        
+        searchBar.searchBarStyle = .minimal
     }
     
     override func configureLayout() {
+        searchBar.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(40)
+        }
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(searchBar.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
@@ -77,7 +85,6 @@ extension MediaViewController: UICollectionViewDelegate, UICollectionViewDataSou
         return posterList.count
     }
 
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MediaCollectionViewCell", for: indexPath) as! MediaCollectionViewCell
         
@@ -98,24 +105,29 @@ extension MediaViewController: UICollectionViewDelegate, UICollectionViewDataSou
             
         } else {
             let item = popularList[indexPath.item]
-            let url = URL(string: baseURL + (item.poster_path ?? "/qPmVoG8G9tc1nN8ZwGV2zYcknit.jpg")) 
+            let url = URL(string: baseURL + (item.poster_path ?? ""))
             cell.posterImage.kf.setImage(with: url)
             cell.adultLabel.isHidden = item.adult ? false : true
         }
-        //collectionView.reloadData()
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DramaViewController()
-        let item = posterList[indexPath.item]
-        
-        vc.list = Detail(id: item.id, name: item.name, poster: item.poster, backdrop: item.backdrop, rating: 5.0, overview: item.overview)
-        
+        if collectionView.tag == 0 {
+            let item = posterList[indexPath.item]
+            vc.index = item.id
+        } else if collectionView.tag == 1 {
+            let item = topRatedList[indexPath.item]
+            vc.index = item.id
+        } else {
+            let item = popularList[indexPath.item]
+            vc.index = item.id
+        }
+    
         navigationController?.pushViewController(vc, animated: true)
         
-        print(posterList[indexPath.item].name)
     }
     
 
@@ -138,13 +150,10 @@ extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
         cell.collectionView.tag = indexPath.item
         cell.collectionView.reloadData()
 
-        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
- 
 
-    
 }

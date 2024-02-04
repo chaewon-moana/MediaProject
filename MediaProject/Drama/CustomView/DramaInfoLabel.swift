@@ -10,11 +10,13 @@ import UIKit
 class DramaInfoLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configureAttribute()
     }
     
     func configureAttribute() {
         textColor = .white
-        font = .systemFont(ofSize: 14)
+        font = .systemFont(ofSize: 13)
+        
         
     }
     

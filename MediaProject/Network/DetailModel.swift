@@ -19,11 +19,10 @@ struct Detail: Decodable {
     let backdrop: String?
     let rating: Double
     let overview: String?
-//    let adult: Bool
-
-//    let runtime: [Int]
-//    let firstAirDate: String
-//    let genres: [Genre]
+    let runtime: [Int]
+    let firstAirDate: String
+    let genres: [Genre]
+    //    let adult: Bool
 //    let homepage: String
 //   
 //    let lastAirEpisode: AirEpisode
@@ -41,9 +40,9 @@ struct Detail: Decodable {
         case backdrop = "backdrop_path"
         case rating = "vote_average"
         case overview
-//        case runtime = "episode_run_time"
-//        case firstAirDate = "first_air_date"
-//        case genres
+        case runtime = "episode_run_time"
+        case firstAirDate = "first_air_date"
+        case genres
 //        case homepage
 //       
 //        case lastAirEpisode = "last_episode_to_air"

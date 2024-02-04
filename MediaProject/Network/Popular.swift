@@ -17,4 +17,5 @@ struct PopularTV: Decodable {
     let overview: String
     let name: String
     let poster_path: String?
+    let backdrop_path: String?
 }

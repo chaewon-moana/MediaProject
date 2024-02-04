@@ -28,17 +28,22 @@ class MediaCollectionViewCell: UICollectionViewCell {
     }
     
     func setAddView() {
-        contentView.addSubviews([titleLabel, posterImage, ratedLabel, adultLabel])
+        contentView.addSubviews([titleLabel, posterImage, adultLabel])
+        posterImage.addSubview(ratedLabel)
     }
     
     func configureAttribute() {
         backgroundColor = .black
+        posterImage.clipsToBounds = true
+        posterImage.layer.cornerRadius = 8
         
+        
+        //TODO: 왼쪽상단만 둥글게 가능?
         ratedLabel.backgroundColor = .systemRed
         ratedLabel.textColor = .white
         ratedLabel.textAlignment = .center
         ratedLabel.isHidden = true
-                
+
         adultLabel.text = "19"
         adultLabel.font = .boldSystemFont(ofSize: 12)
         adultLabel.textAlignment = .center

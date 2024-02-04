@@ -12,10 +12,9 @@ import Kingfisher
 class DramaViewController: BaseViewController{
 
     let dramaInfoTableView = UITableView()
-    let titleLabel = UILabel()
-    
+
     let tmdbManager = TMDBAPIManager.shared
-    var list: Detail = Detail(id: 0, name: "", poster: "", backdrop: "", rating: 0.0, overview: "")
+    var list: Detail = Detail(id: 0, name: "", poster: "", backdrop: "", rating: 0.0, overview: "", runtime: [], firstAirDate: "", genres: [])
     var creditList: DramaCredits = DramaCredits(cast: [])
     var recommandationList: [Recommandation] = []
     
@@ -30,22 +29,21 @@ class DramaViewController: BaseViewController{
         dramaInfoTableView.delegate = self
         dramaInfoTableView.dataSource = self
         
-        //dramaInfoTableView.rowHeight = UITableView.automaticDimension
         
         group.enter()
-        tmdbManager.fetchDetailModel(id: list.id) { model in
+        tmdbManager.fetchDetailModel(id: index) { model in
             self.list = model
             group.leave()
         }
         
         group.enter()
-        tmdbManager.fetchCreditsModel(id: list.id) { credits in
+        tmdbManager.fetchCreditsModel(id: index) { credits in
             self.creditList = credits
             group.leave()
         }
         
         group.enter()
-        tmdbManager.fetchRecommandationModel(id: list.id) { recommandation in
+        tmdbManager.fetchRecommandationModel(id: index) { recommandation in
             self.recommandationList = recommandation.results
             group.leave()
         }
@@ -59,24 +57,17 @@ class DramaViewController: BaseViewController{
     }
     
     override func setAddView() {
-        view.addSubviews([dramaInfoTableView, titleLabel])
+        view.addSubview(dramaInfoTableView)
     }
     
     override func configureLayout() {
-        titleLabel.snp.makeConstraints { make in
-            make.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(24)
-        }
-        
         dramaInfoTableView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
-            make.bottom.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 
     override func configureAttribute() {
-        titleLabel.text = list.name
-        titleLabel.textColor = .white
+
     }
 }
 
@@ -96,6 +87,14 @@ extension DramaViewController: UITableViewDelegate, UITableViewDataSource {
             Infocell.backImageView.kf.setImage(with: URL(string: baseURL + (list.backdrop ?? "")))
             Infocell.ratingLabel.text = "평점 : \(list.rating)"
             Infocell.overviewLabel.text = list.overview
+            Infocell.airDateLabel.text = list.firstAirDate
+            
+            var tmp = "장르 : "
+            for genre in list.genres {
+                tmp += "\(genre.name) | "
+            }
+            
+            Infocell.genreLabel.text = tmp
             return Infocell
             
         } else {
@@ -104,6 +103,7 @@ extension DramaViewController: UITableViewDelegate, UITableViewDataSource {
             creditCell.collectionView.delegate = self
             creditCell.collectionView.dataSource = self
             
+            creditCell.creditLabel.text = indexPath.row == 1 ? "출연" : "다른 추천 시리즈"
             creditCell.collectionView.register(DramaCreditsCollectionViewCell.self, forCellWithReuseIdentifier: "DramaCreditsCollectionViewCell")
             creditCell.collectionView.reloadData()
             creditCell.collectionView.tag = indexPath.item
@@ -115,7 +115,17 @@ extension DramaViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 500
+            
+            let text = list.overview
+            
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: CGFloat.greatestFiniteMagnitude))
+            label.text = text
+            label.numberOfLines = 0
+            label.lineBreakMode = .byWordWrapping
+            label.sizeToFit()
+
+            return label.frame.height + 350
+            
         } else {
             return 180
         }

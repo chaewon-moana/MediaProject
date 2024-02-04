@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DE7D54E92B6F5FD90060BE42 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DE7D54E82B6F5FD90060BE42 /* Kingfisher */; };
+		DE7D54EC2B6F77E70060BE42 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D54EB2B6F77E70060BE42 /* MovieViewController.swift */; };
 		DE8912FF2B6A63A3008E561C /* DramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8912FE2B6A63A3008E561C /* DramaViewController.swift */; };
 		DE8913022B6A6A64008E561C /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913012B6A6A64008E561C /* DetailModel.swift */; };
 		DE8913042B6A6E40008E561C /* DramaInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE7D54EB2B6F77E70060BE42 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		DE8912FE2B6A63A3008E561C /* DramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaViewController.swift; sourceTree = "<group>"; };
 		DE8913012B6A6A64008E561C /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -89,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE7D54EA2B6F77D80060BE42 /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				DE7D54EB2B6F77E70060BE42 /* MovieViewController.swift */,
+			);
+			path = Movie;
+			sourceTree = "<group>";
+		};
 		DE8912FD2B6A638D008E561C /* Drama */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +140,7 @@
 		DECC36B12B68F766008E8B41 /* MediaProject */ = {
 			isa = PBXGroup;
 			children = (
+				DE7D54EA2B6F77D80060BE42 /* Movie */,
 				DE8912FD2B6A638D008E561C /* Drama */,
 				DECC36EB2B6A1500008E8B41 /* Media */,
 				DECC36E82B6A140A008E8B41 /* Base */,
@@ -283,6 +294,7 @@
 				DE8913182B6D1387008E561C /* DramaCredits.swift in Sources */,
 				DE8913022B6A6A64008E561C /* DetailModel.swift in Sources */,
 				DECC36ED2B6A151F008E8B41 /* MediaTableViewCell.swift in Sources */,
+				DE7D54EC2B6F77E70060BE42 /* MovieViewController.swift in Sources */,
 				DECC36CF2B69C665008E8B41 /* APIKey.swift in Sources */,
 				DE89131C2B6E2833008E561C /* DramaRecommandation.swift in Sources */,
 				DECC36EA2B6A1415008E8B41 /* BaseViewController.swift in Sources */,
