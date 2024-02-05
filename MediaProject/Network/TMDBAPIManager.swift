@@ -12,7 +12,7 @@ class TMDBAPIManager {
     static let shared = TMDBAPIManager() // 이 한곳에다가만 만들어두어서 저장공간이 낭비되지 않도록 함!
 
     func fetchDrama(api: TMDBAPI, completionHandler: @escaping (([Drama]) -> Void)) {
-        AF.request(api.endPoint, headers: header).responseDecodable(of: DramaModel.self) { response in
+        AF.request(api.endPoint, parameters: api.parameter, headers: header).responseDecodable(of: DramaModel.self) { response in
             switch response.result {
             case .success(let success):
                 completionHandler(success.results)
@@ -21,6 +21,7 @@ class TMDBAPIManager {
             }
         }
     }
+        
     
     let header: HTTPHeaders = ["Authorization": APIKey.tmdbAPIKey]
     let baseURL = "https://api.themoviedb.org/3/"

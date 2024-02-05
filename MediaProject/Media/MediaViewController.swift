@@ -17,6 +17,7 @@ class MediaViewController: BaseViewController {
         view.delegate = self
         view.dataSource = self
         view.register(MediaTableViewCell.self, forCellReuseIdentifier: "MediaTableViewCell")
+        view.register(DramaSearchTableViewCell.self, forCellReuseIdentifier: "DramaSearchTableViewCell")
         return view
     }()
     
@@ -24,22 +25,34 @@ class MediaViewController: BaseViewController {
     let tmdbsesssionManager = TMDBSessionManager.shared
     let categoryList = ["Trend", "TopRated", "Popular"]
     var dramaList: [[Drama]] = [[],[],[]]
+    var searchList: [String] = []
+    var changedTableCell = 0 {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
+    var searchString = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.delegate  = self
+        
         navigationItem.title = "DRAMA"
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.backgroundColor = .gray
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         TMDBURLSession()
         //TMDBAlamofire()
+        searchBar.searchTextField.textColor = .white
         
     }
     
     func TMDBURLSession() {
         let group = DispatchGroup()
-    
+ 
         group.enter()
         tmdbsesssionManager.fetchDrama(api: .trending) { tv, error in
             if error == nil {
@@ -74,7 +87,7 @@ class MediaViewController: BaseViewController {
     func TMDBAlamofire() {
         
         let group = DispatchGroup()
-        
+ 
         group.enter()
         tmdbManager.fetchDrama(api: .topRated) { tv in
             self.dramaList[1] = tv
@@ -107,7 +120,6 @@ class MediaViewController: BaseViewController {
         
         searchBar.searchBarStyle = .minimal
     }
-    
     override func configureLayout() {
         searchBar.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
@@ -121,13 +133,13 @@ class MediaViewController: BaseViewController {
 }
 
 
-
 extension MediaViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dramaList[0].count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MediaCollectionViewCell", for: indexPath) as! MediaCollectionViewCell
         
         let baseURL = "https://image.tmdb.org/t/p/w500"
@@ -155,23 +167,85 @@ extension MediaViewController: UICollectionViewDelegate, UICollectionViewDataSou
 
 extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return changedTableCell == 0 ? 3 : searchList.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MediaTableViewCell", for: indexPath) as! MediaTableViewCell
-        cell.categoryLabel.text = categoryList[indexPath.row]
+       
         
-        cell.collectionView.dataSource = self
-        cell.collectionView.delegate = self
-        cell.collectionView.register(MediaCollectionViewCell.self, forCellWithReuseIdentifier: "MediaCollectionViewCell")
-        cell.collectionView.tag = indexPath.item
-        cell.collectionView.reloadData()
+        if changedTableCell == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MediaTableViewCell", for: indexPath) as! MediaTableViewCell
+            
+            cell.categoryLabel.text = categoryList[indexPath.row]
+            
+            cell.collectionView.dataSource = self
+            cell.collectionView.delegate = self
+            cell.collectionView.register(MediaCollectionViewCell.self, forCellWithReuseIdentifier: "MediaCollectionViewCell")
+            cell.collectionView.tag = indexPath.item
+            cell.collectionView.reloadData()
 
-        return cell
+            return cell
+        } else {
+            let searchCell = tableView.dequeueReusableCell(withIdentifier: "DramaSearchTableViewCell", for: indexPath) as! DramaSearchTableViewCell
+            
+            searchCell.backgroundColor = .black
+            searchCell.searchesLabel.text = searchList[indexPath.row]
+            searchCell.searchesLabel.textColor = .white
+            
+            return searchCell
+        }
+       
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return changedTableCell == 0 ? 200 : 40
     }
 
+}
+
+extension MediaViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        changedTableCell = 1
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        changedTableCell = 0
+        
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        guard let text = searchBar.text else { return true }
+        
+        if text.isEmpty {
+            changedTableCell = 0
+            return true
+        } else {
+            return false
+        }
+        
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        searchString = searchBar.text!
+        TMDBAPIManager.shared.fetchDrama(api: .search(query: searchString)) { drama in
+            self.searchList.removeAll()
+            for name in drama {
+                print(name.name)
+                self.searchList.append(name.name)
+            }
+            self.tableView.reloadData()
+            print("=================")
+        }
+        
+        print(searchString)
+        
+        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            view.endEditing(true)
+            changedTableCell = 0
+        }
+        
+    }
 }

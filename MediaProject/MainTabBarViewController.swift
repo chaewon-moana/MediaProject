@@ -20,7 +20,7 @@ class MainTabBarViewController: UITabBarController {
 
         tabBar.barTintColor = .black
         tabBar.tintColor = .white
-        viewControllers = [movieVC, dramaVC]
+        viewControllers = [dramaVC, movieVC]
     }
 
 }

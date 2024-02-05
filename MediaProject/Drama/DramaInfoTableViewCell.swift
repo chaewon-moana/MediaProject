@@ -9,7 +9,14 @@ import UIKit
 import SnapKit
 
 class DramaInfoTableViewCell: BaseTableViewCell {
-    
+    let stackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.alignment = .top
+        view.distribution = .equalSpacing
+        view.spacing = 4
+        return view
+    }()
     let backImageView = UIImageView()
     let posterImage = UIImageView()
     let nameLabel = UILabel()
@@ -24,15 +31,21 @@ class DramaInfoTableViewCell: BaseTableViewCell {
     let nextEpisode = UILabel() //다음화로 이동
   
     let tmdbManager = TMDBAPIManager.shared
-    
     let gradientLayer = CAGradientLayer()
     
     override func setAddView() {
-        contentView.addSubviews([backImageView, overviewLabel, underLineView, posterImage, nameLabel, ratingLabel, genreLabel, airDateLabel])
+        contentView.addSubviews([backImageView, underLineView, posterImage, nameLabel, ratingLabel, genreLabel, airDateLabel, stackView])
+        stackView.addSubview(overviewLabel)
         contentView.backgroundColor = .black
     }
+
     
     override func configureLayout() {
+    
+        stackView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(underLineView)
+            make.top.equalTo(underLineView.snp.bottom)
+        }
         
         backImageView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide)
@@ -78,14 +91,21 @@ class DramaInfoTableViewCell: BaseTableViewCell {
             make.height.equalTo(1)
             make.top.equalTo(backImageView.snp.bottom).inset(2)
         }
+        
         overviewLabel.snp.makeConstraints { make in
-            make.top.equalTo(underLineView.snp.bottom).offset(12)
-            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(8)
+            make.edges.equalToSuperview().inset(4)
         }
     }
-
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        print("InfoTableViewCell height")
+        DramaViewController.infoSize = stackView.bounds.height
+    }
+    
     override func configureAttribute() {
-
+        stackView.backgroundColor = .black
+        
         posterImage.clipsToBounds = true
         posterImage.layer.cornerRadius = 8
         

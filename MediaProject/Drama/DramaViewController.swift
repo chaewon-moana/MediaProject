@@ -19,17 +19,16 @@ class DramaViewController: BaseViewController{
     var recommandationList: [Recommandation] = []
     
     var index: Int = 0
+    static var infoSize: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let group = DispatchGroup()
         
         view.backgroundColor = .black
-        
         dramaInfoTableView.delegate = self
         dramaInfoTableView.dataSource = self
-        
-        
+        dramaInfoTableView.rowHeight = UITableView.automaticDimension
         group.enter()
         tmdbManager.fetchDetailModel(id: index) { model in
             self.list = model
@@ -88,7 +87,6 @@ extension DramaViewController: UITableViewDelegate, UITableViewDataSource {
             Infocell.ratingLabel.text = "평점 : \(list.rating)"
             Infocell.overviewLabel.text = list.overview
             Infocell.airDateLabel.text = "첫 방영일 : \(list.firstAirDate)"
-            
             var tmp = "장르 : "
             for (index, genre) in list.genres.enumerated() {
                 if index == list.genres.count - 1 {
@@ -97,7 +95,6 @@ extension DramaViewController: UITableViewDelegate, UITableViewDataSource {
                     tmp += "\(genre.name) | "
                 }
             }
-            
             Infocell.genreLabel.text = tmp
             return Infocell
             
@@ -113,28 +110,24 @@ extension DramaViewController: UITableViewDelegate, UITableViewDataSource {
             creditCell.collectionView.tag = indexPath.item
 
             return creditCell
-            
         }
+    }
+
+    override func viewDidLayoutSubviews() {
+        dramaInfoTableView.beginUpdates()
+        
+        dramaInfoTableView.endUpdates()
+        print("dramaVC viewdidlayoutsubviews")
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            
-            let text = list.overview
-            
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: CGFloat.greatestFiniteMagnitude))
-            label.text = text
-            label.numberOfLines = 0
-            label.lineBreakMode = .byWordWrapping
-            label.sizeToFit()
-
-            return label.frame.height + 350
-            
+            return DramaViewController.infoSize + 360
+            //return 500
         } else {
-            return 180
+            return 200
         }
     }
-    
 }
 
 extension DramaViewController: UICollectionViewDelegate, UICollectionViewDataSource {

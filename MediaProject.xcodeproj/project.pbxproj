@@ -14,6 +14,7 @@
 		DE7D550D2B70BC830060BE42 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DE7D550C2B70BC830060BE42 /* SnapKit */; };
 		DE7D55102B70BC8A0060BE42 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE7D550F2B70BC8A0060BE42 /* Alamofire */; };
 		DE7D55132B70BC910060BE42 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DE7D55122B70BC910060BE42 /* Kingfisher */; };
+		DE7D55152B70C79F0060BE42 /* DramaSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D55142B70C79F0060BE42 /* DramaSearchTableViewCell.swift */; };
 		DE8912FF2B6A63A3008E561C /* DramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8912FE2B6A63A3008E561C /* DramaViewController.swift */; };
 		DE8913022B6A6A64008E561C /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913012B6A6A64008E561C /* DetailModel.swift */; };
 		DE8913042B6A6E40008E561C /* DramaInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */; };
@@ -58,6 +59,7 @@
 		DE7D54ED2B705D940060BE42 /* DramaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaModel.swift; sourceTree = "<group>"; };
 		DE7D54F92B70A1980060BE42 /* TMDBAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPI.swift; sourceTree = "<group>"; };
 		DE7D54FB2B70ABEA0060BE42 /* TMDBSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBSessionManager.swift; sourceTree = "<group>"; };
+		DE7D55142B70C79F0060BE42 /* DramaSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaSearchTableViewCell.swift; sourceTree = "<group>"; };
 		DE8912FE2B6A63A3008E561C /* DramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaViewController.swift; sourceTree = "<group>"; };
 		DE8913012B6A6A64008E561C /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				DECC36B62B68F766008E8B41 /* MediaViewController.swift */,
 				DECC36EC2B6A151F008E8B41 /* MediaTableViewCell.swift */,
 				DECC36F22B6A18A2008E8B41 /* MediaCollectionViewCell.swift */,
+				DE7D55142B70C79F0060BE42 /* DramaSearchTableViewCell.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DECC36B72B68F766008E8B41 /* MediaViewController.swift in Sources */,
+				DE7D55152B70C79F0060BE42 /* DramaSearchTableViewCell.swift in Sources */,
 				DE8913042B6A6E40008E561C /* DramaInfoTableViewCell.swift in Sources */,
 				DE8913162B6D11A4008E561C /* DramaCreditsCollectionViewCell.swift in Sources */,
 				DECC36B32B68F766008E8B41 /* AppDelegate.swift in Sources */,

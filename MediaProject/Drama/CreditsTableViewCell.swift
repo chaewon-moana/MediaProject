@@ -46,12 +46,9 @@ class CreditsTableViewCell: BaseTableViewCell {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.horizontalEdges.bottom.equalTo(contentView.safeAreaLayoutGuide)
-            make.top.equalTo(creditLabel.snp.bottom)
+            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide)
+            make.top.equalTo(creditLabel.snp.bottom).offset(8)
+            make.height.equalTo(130)
         }
-        
-        
-        
-        
     }
 }
