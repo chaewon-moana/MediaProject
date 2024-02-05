@@ -22,14 +22,10 @@ class MediaViewController: BaseViewController {
     
     let tmdbManager = TMDBAPIManager.shared
     let categoryList = ["Trend", "TopRated", "Popular"]
-    var posterList: [TrendTV] = []
-    var topRatedList: [TopTV] = []
-    var popularList: [PopularTV] = []
+    var dramaList: [[Drama]] = [[],[],[]]
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         navigationItem.title = "DRAMA"
         navigationController?.navigationBar.tintColor = .white
@@ -37,26 +33,25 @@ class MediaViewController: BaseViewController {
         let group = DispatchGroup()
         
         group.enter()
-        tmdbManager.fetchTrendTV { tv in
-            self.posterList = tv
+        tmdbManager.fetchDrama(api: .trending) { tv in
+            self.dramaList[0] = tv
             group.leave()
         }
         
         group.enter()
-        tmdbManager.fetchTopRatedTV { tv in
-            self.topRatedList = tv
+        tmdbManager.fetchDrama(api: .topRated) { tv in
+            self.dramaList[1] = tv
             group.leave()
         }
         
         group.enter()
-        tmdbManager.fetchPopularTV { tv in
-            self.popularList = tv
+        tmdbManager.fetchDrama(api: .popluar) { tv in
+            self.dramaList[2] = tv
             group.leave()
         }
-        
+
         group.notify(queue: .main) {
             self.tableView.reloadData()
-            //print(self.topRatedList)
         }
     }
     
@@ -86,56 +81,32 @@ class MediaViewController: BaseViewController {
 
 extension MediaViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posterList.count
+        return dramaList[0].count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MediaCollectionViewCell", for: indexPath) as! MediaCollectionViewCell
         
         let baseURL = "https://image.tmdb.org/t/p/w500"
-        if collectionView.tag == 0 {
-            let item = posterList[indexPath.item]
-            let url = URL(string: baseURL + item.poster)
-            cell.posterImage.kf.setImage(with: url)
-            cell.adultLabel.isHidden = item.adult ? false : true
-        } else if collectionView.tag == 1 {
-            let item = topRatedList[indexPath.item]
-            let url = URL(string: baseURL + item.poster)
-            cell.posterImage.kf.setImage(with: url)
-            cell.adultLabel.isHidden = item.adult ? false : true
-
-            cell.ratedLabel.isHidden = false
-            cell.ratedLabel.text = String(indexPath.item + 1)
-            
-        } else {
-            let item = popularList[indexPath.item]
-            let url = URL(string: baseURL + (item.poster_path ?? ""))
-            cell.posterImage.kf.setImage(with: url)
-            cell.adultLabel.isHidden = item.adult ? false : true
-        }
         
+        let item = dramaList[collectionView.tag][indexPath.item]
+        let url = URL(string: baseURL + (item.poster ?? ""))
+        cell.posterImage.kf.setImage(with: url)
+        cell.adultLabel.isHidden = item.adult ? false : true
+        if collectionView.tag == 1 {
+            cell.ratedLabel.isHidden = false
+            cell.ratedLabel.text = "\(indexPath.item+1)"
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DramaViewController()
-        if collectionView.tag == 0 {
-            let item = posterList[indexPath.item]
-            vc.index = item.id
-        } else if collectionView.tag == 1 {
-            let item = topRatedList[indexPath.item]
-            vc.index = item.id
-        } else {
-            let item = popularList[indexPath.item]
-            vc.index = item.id
-        }
-    
-        navigationController?.pushViewController(vc, animated: true)
         
+        let item = dramaList[collectionView.tag][indexPath.item]
+        vc.index = item.id
+        navigationController?.pushViewController(vc, animated: true)
     }
-    
-
-
 }
 
 

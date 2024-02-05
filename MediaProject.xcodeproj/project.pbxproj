@@ -10,6 +10,7 @@
 		DE7D54E92B6F5FD90060BE42 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DE7D54E82B6F5FD90060BE42 /* Kingfisher */; };
 		DE7D54EC2B6F77E70060BE42 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D54EB2B6F77E70060BE42 /* MovieViewController.swift */; };
 		DE7D54EE2B705D940060BE42 /* DramaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D54ED2B705D940060BE42 /* DramaModel.swift */; };
+		DE7D54FA2B70A1980060BE42 /* TMDBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D54F92B70A1980060BE42 /* TMDBAPI.swift */; };
 		DE8912FF2B6A63A3008E561C /* DramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8912FE2B6A63A3008E561C /* DramaViewController.swift */; };
 		DE8913022B6A6A64008E561C /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913012B6A6A64008E561C /* DetailModel.swift */; };
 		DE8913042B6A6E40008E561C /* DramaInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		DE7D54EB2B6F77E70060BE42 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		DE7D54ED2B705D940060BE42 /* DramaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaModel.swift; sourceTree = "<group>"; };
+		DE7D54F92B70A1980060BE42 /* TMDBAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPI.swift; sourceTree = "<group>"; };
 		DE8912FE2B6A63A3008E561C /* DramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaViewController.swift; sourceTree = "<group>"; };
 		DE8913012B6A6A64008E561C /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				DECC36CA2B69C643008E8B41 /* TMDBAPIManager.swift */,
+				DE7D54F92B70A1980060BE42 /* TMDBAPI.swift */,
 				DECC36DB2B69C832008E8B41 /* TrendModel.swift */,
 				DECC36F42B6A1D17008E8B41 /* TopRated.swift */,
 				DECC36F62B6A4BB6008E8B41 /* Popular.swift */,
@@ -295,6 +298,7 @@
 				DE8912FF2B6A63A3008E561C /* DramaViewController.swift in Sources */,
 				DECC36CB2B69C643008E8B41 /* TMDBAPIManager.swift in Sources */,
 				DE7D54EE2B705D940060BE42 /* DramaModel.swift in Sources */,
+				DE7D54FA2B70A1980060BE42 /* TMDBAPI.swift in Sources */,
 				DE8913182B6D1387008E561C /* DramaCredits.swift in Sources */,
 				DE8913022B6A6A64008E561C /* DetailModel.swift in Sources */,
 				DECC36ED2B6A151F008E8B41 /* MediaTableViewCell.swift in Sources */,
