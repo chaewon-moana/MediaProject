@@ -13,6 +13,22 @@ class TMDBAPIManager {
     let header: HTTPHeaders = ["Authorization": APIKey.tmdbAPIKey]
     let baseURL = "https://api.themoviedb.org/3/"
     
+    func fetchDrama(completionHandler: @escaping (([Drama]) -> Void)) {
+        let url = baseURL + "trending/tv/day?language=ko-KR"
+        
+        AF.request(url, headers: header).responseDecodable(of: DramaModel.self) { response in
+            switch response.result {
+            case .success(let success):
+               // print("success", success.results)
+                completionHandler(success.results)
+                
+            case .failure(let failure):
+                print("fail", failure)
+            }
+        }
+        
+    }
+    
     func fetchTrendTV(completionHandler: @escaping (([TrendTV]) -> Void)) {
         let url = baseURL + "trending/tv/day?language=ko-KR"
     

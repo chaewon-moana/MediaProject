@@ -87,11 +87,15 @@ extension DramaViewController: UITableViewDelegate, UITableViewDataSource {
             Infocell.backImageView.kf.setImage(with: URL(string: baseURL + (list.backdrop ?? "")))
             Infocell.ratingLabel.text = "평점 : \(list.rating)"
             Infocell.overviewLabel.text = list.overview
-            Infocell.airDateLabel.text = list.firstAirDate
+            Infocell.airDateLabel.text = "첫 방영일 : \(list.firstAirDate)"
             
             var tmp = "장르 : "
-            for genre in list.genres {
-                tmp += "\(genre.name) | "
+            for (index, genre) in list.genres.enumerated() {
+                if index == list.genres.count - 1 {
+                    tmp += genre.name
+                } else {
+                    tmp += "\(genre.name) | "
+                }
             }
             
             Infocell.genreLabel.text = tmp

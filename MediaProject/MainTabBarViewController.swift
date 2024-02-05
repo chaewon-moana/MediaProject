@@ -18,7 +18,11 @@ class MainTabBarViewController: UITabBarController {
         let dramaVC = UINavigationController(rootViewController: MediaViewController())
         
         movieVC.tabBarItem = UITabBarItem(title: "영화", image: UIImage(systemName: "magnifyingglass"), tag: 0)
+        
+        
         dramaVC.tabBarItem = UITabBarItem(title: "드라마", image: UIImage(systemName: "person"), tag: 1)
+
+        
         
         tabBar.barTintColor = .black
         tabBar.tintColor = .white

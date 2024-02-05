@@ -30,6 +30,10 @@ class MediaViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        navigationItem.title = "DRAMA"
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.backgroundColor = .gray
         let group = DispatchGroup()
         
         group.enter()

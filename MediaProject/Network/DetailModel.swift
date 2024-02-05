@@ -22,6 +22,8 @@ struct Detail: Decodable {
     let runtime: [Int]
     let firstAirDate: String
     let genres: [Genre]
+    
+    
     //    let adult: Bool
 //    let homepage: String
 //   
