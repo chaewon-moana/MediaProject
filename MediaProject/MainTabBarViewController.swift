@@ -11,22 +11,16 @@ class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let tabbar = UITabBarController()
         
         let movieVC = UINavigationController(rootViewController: MovieViewController())
         let dramaVC = UINavigationController(rootViewController: MediaViewController())
         
-        movieVC.tabBarItem = UITabBarItem(title: "영화", image: UIImage(systemName: "magnifyingglass"), tag: 0)
-        
-        
-        dramaVC.tabBarItem = UITabBarItem(title: "드라마", image: UIImage(systemName: "person"), tag: 1)
+        movieVC.tabBarItem = UITabBarItem(title: "영화", image: UIImage(systemName: "film"), tag: 0)
+        dramaVC.tabBarItem = UITabBarItem(title: "드라마", image: UIImage(systemName: "play.tv"), tag: 1)
 
-        
-        
         tabBar.barTintColor = .black
         tabBar.tintColor = .white
-        viewControllers = [dramaVC, movieVC]
+        viewControllers = [movieVC, dramaVC]
     }
 
 }

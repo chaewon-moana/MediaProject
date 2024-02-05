@@ -35,13 +35,10 @@ struct Drama: Decodable {
         case firstAirDate = "first_air_date"
         case rating = "vote_average"
         case genres = "genre_ids"
-        
     }
 }
 
-
 /*
-
  Let popularity: Double
     let originCountry: [String]
     let voteCount: Int

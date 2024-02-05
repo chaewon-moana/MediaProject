@@ -26,7 +26,6 @@ enum TMDBAPI: CaseIterable {
         case .popluar:
             return URL(string: baseURL + "tv/popular?language=ko-KR?page=1")!
         }
-        
     }
     
     var header: HTTPHeaders {

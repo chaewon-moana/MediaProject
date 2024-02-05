@@ -21,6 +21,7 @@ class MediaViewController: BaseViewController {
     }()
     
     let tmdbManager = TMDBAPIManager.shared
+    let tmdbsesssionManager = TMDBSessionManager.shared
     let categoryList = ["Trend", "TopRated", "Popular"]
     var dramaList: [[Drama]] = [[],[],[]]
 
@@ -30,13 +31,49 @@ class MediaViewController: BaseViewController {
         navigationItem.title = "DRAMA"
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.backgroundColor = .gray
-        let group = DispatchGroup()
         
+        TMDBURLSession()
+        //TMDBAlamofire()
+        
+    }
+    
+    func TMDBURLSession() {
+        let group = DispatchGroup()
+    
         group.enter()
-        tmdbManager.fetchDrama(api: .trending) { tv in
-            self.dramaList[0] = tv
+        tmdbsesssionManager.fetchDrama(api: .trending) { tv, error in
+            if error == nil {
+                guard let tv = tv else { return }
+                self.dramaList[0] = tv
+            }
             group.leave()
         }
+        
+        group.enter()
+        tmdbsesssionManager.fetchDrama(api: .topRated) { tv, error in
+            if error == nil {
+                guard let tv = tv else { return }
+                self.dramaList[1] = tv
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        tmdbsesssionManager.fetchDrama(api: .popluar) { tv, error in
+            if error == nil {
+                guard let tv = tv else { return }
+                self.dramaList[2] = tv
+            }
+            group.leave()
+        }
+
+        group.notify(queue: .main) {
+            self.tableView.reloadData()
+        }
+    }
+    func TMDBAlamofire() {
+        
+        let group = DispatchGroup()
         
         group.enter()
         tmdbManager.fetchDrama(api: .topRated) { tv in
@@ -49,7 +86,13 @@ class MediaViewController: BaseViewController {
             self.dramaList[2] = tv
             group.leave()
         }
-
+        
+        group.enter()
+        tmdbManager.fetchDrama(api: .trending) { tv in
+            self.dramaList[0] = tv
+            group.leave()
+        }
+        
         group.notify(queue: .main) {
             self.tableView.reloadData()
         }

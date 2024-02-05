@@ -164,6 +164,9 @@ extension DramaViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("픽미픽미업")
+        let vc = DramaViewController()
+        
+        vc.index = recommandationList[indexPath.item].id
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
