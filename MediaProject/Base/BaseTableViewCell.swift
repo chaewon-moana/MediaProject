@@ -15,6 +15,11 @@ class BaseTableViewCell: UITableViewCell {
         setAddView()
         configureAttribute()
         configureLayout()
+        subViewDidLoad()
+    }
+    
+    func subViewDidLoad() {
+        
     }
     
     func setAddView() {

@@ -20,6 +20,7 @@
 		DE7D55F72B7890040060BE42 /* ProfileLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D55F62B7890040060BE42 /* ProfileLabel.swift */; };
 		DE7D55F92B7890FD0060BE42 /* ProfileTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D55F82B7890FD0060BE42 /* ProfileTextField.swift */; };
 		DE7D55FE2B789EC00060BE42 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D55FD2B789EC00060BE42 /* ProfileDetailViewController.swift */; };
+		DE7D56002B78ACBD0060BE42 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D55FF2B78ACBD0060BE42 /* ProfileTableViewCell.swift */; };
 		DE8912FF2B6A63A3008E561C /* DramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8912FE2B6A63A3008E561C /* DramaViewController.swift */; };
 		DE8913022B6A6A64008E561C /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913012B6A6A64008E561C /* DetailModel.swift */; };
 		DE8913042B6A6E40008E561C /* DramaInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */; };
@@ -70,6 +71,7 @@
 		DE7D55F62B7890040060BE42 /* ProfileLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLabel.swift; sourceTree = "<group>"; };
 		DE7D55F82B7890FD0060BE42 /* ProfileTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextField.swift; sourceTree = "<group>"; };
 		DE7D55FD2B789EC00060BE42 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
+		DE7D55FF2B78ACBD0060BE42 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		DE8912FE2B6A63A3008E561C /* DramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaViewController.swift; sourceTree = "<group>"; };
 		DE8913012B6A6A64008E561C /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				DE7D55F32B7889F00060BE42 /* ProfileViewController.swift */,
 				DE7D55FD2B789EC00060BE42 /* ProfileDetailViewController.swift */,
+				DE7D55FF2B78ACBD0060BE42 /* ProfileTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				DECC36B72B68F766008E8B41 /* MediaViewController.swift in Sources */,
 				DE7D55152B70C79F0060BE42 /* DramaSearchTableViewCell.swift in Sources */,
 				DE8913042B6A6E40008E561C /* DramaInfoTableViewCell.swift in Sources */,
+				DE7D56002B78ACBD0060BE42 /* ProfileTableViewCell.swift in Sources */,
 				DE8913162B6D11A4008E561C /* DramaCreditsCollectionViewCell.swift in Sources */,
 				DECC36B32B68F766008E8B41 /* AppDelegate.swift in Sources */,
 				DE8913142B6D0B9A008E561C /* MainTabBarViewController.swift in Sources */,
