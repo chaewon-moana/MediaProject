@@ -15,6 +15,7 @@ class BaseViewController: UIViewController {
         setAddView()
         configureLayout()
         configureAttribute()
+        subViewDidLoad()
     }
     
     func setAddView() {
@@ -26,6 +27,10 @@ class BaseViewController: UIViewController {
     }
 
     func configureLayout() {
+        
+    }
+    
+    func subViewDidLoad() {
         
     }
     

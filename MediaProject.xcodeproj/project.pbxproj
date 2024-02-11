@@ -15,6 +15,11 @@
 		DE7D55102B70BC8A0060BE42 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE7D550F2B70BC8A0060BE42 /* Alamofire */; };
 		DE7D55132B70BC910060BE42 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DE7D55122B70BC910060BE42 /* Kingfisher */; };
 		DE7D55152B70C79F0060BE42 /* DramaSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D55142B70C79F0060BE42 /* DramaSearchTableViewCell.swift */; };
+		DE7D55182B71B42F0060BE42 /* DramaSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D55172B71B42F0060BE42 /* DramaSearchViewController.swift */; };
+		DE7D55F42B7889F00060BE42 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D55F32B7889F00060BE42 /* ProfileViewController.swift */; };
+		DE7D55F72B7890040060BE42 /* ProfileLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D55F62B7890040060BE42 /* ProfileLabel.swift */; };
+		DE7D55F92B7890FD0060BE42 /* ProfileTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D55F82B7890FD0060BE42 /* ProfileTextField.swift */; };
+		DE7D55FE2B789EC00060BE42 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7D55FD2B789EC00060BE42 /* ProfileDetailViewController.swift */; };
 		DE8912FF2B6A63A3008E561C /* DramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8912FE2B6A63A3008E561C /* DramaViewController.swift */; };
 		DE8913022B6A6A64008E561C /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913012B6A6A64008E561C /* DetailModel.swift */; };
 		DE8913042B6A6E40008E561C /* DramaInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */; };
@@ -60,6 +65,11 @@
 		DE7D54F92B70A1980060BE42 /* TMDBAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPI.swift; sourceTree = "<group>"; };
 		DE7D54FB2B70ABEA0060BE42 /* TMDBSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBSessionManager.swift; sourceTree = "<group>"; };
 		DE7D55142B70C79F0060BE42 /* DramaSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaSearchTableViewCell.swift; sourceTree = "<group>"; };
+		DE7D55172B71B42F0060BE42 /* DramaSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaSearchViewController.swift; sourceTree = "<group>"; };
+		DE7D55F32B7889F00060BE42 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		DE7D55F62B7890040060BE42 /* ProfileLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLabel.swift; sourceTree = "<group>"; };
+		DE7D55F82B7890FD0060BE42 /* ProfileTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextField.swift; sourceTree = "<group>"; };
+		DE7D55FD2B789EC00060BE42 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		DE8912FE2B6A63A3008E561C /* DramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaViewController.swift; sourceTree = "<group>"; };
 		DE8913012B6A6A64008E561C /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		DE8913032B6A6E40008E561C /* DramaInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DramaInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -110,6 +120,33 @@
 			path = Movie;
 			sourceTree = "<group>";
 		};
+		DE7D55162B71B41B0060BE42 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				DE7D55172B71B42F0060BE42 /* DramaSearchViewController.swift */,
+				DE7D55142B70C79F0060BE42 /* DramaSearchTableViewCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		DE7D55F22B7889DE0060BE42 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DE7D55F32B7889F00060BE42 /* ProfileViewController.swift */,
+				DE7D55FD2B789EC00060BE42 /* ProfileDetailViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		DE7D55F52B788FF20060BE42 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				DE7D55F62B7890040060BE42 /* ProfileLabel.swift */,
+				DE7D55F82B7890FD0060BE42 /* ProfileTextField.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		DE8912FD2B6A638D008E561C /* Drama */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +188,9 @@
 		DECC36B12B68F766008E8B41 /* MediaProject */ = {
 			isa = PBXGroup;
 			children = (
+				DE7D55F52B788FF20060BE42 /* Custom */,
+				DE7D55F22B7889DE0060BE42 /* Profile */,
+				DE7D55162B71B41B0060BE42 /* Search */,
 				DE7D54EA2B6F77D80060BE42 /* Movie */,
 				DE8912FD2B6A638D008E561C /* Drama */,
 				DECC36EB2B6A1500008E8B41 /* Media */,
@@ -206,7 +246,6 @@
 				DECC36B62B68F766008E8B41 /* MediaViewController.swift */,
 				DECC36EC2B6A151F008E8B41 /* MediaTableViewCell.swift */,
 				DECC36F22B6A18A2008E8B41 /* MediaCollectionViewCell.swift */,
-				DE7D55142B70C79F0060BE42 /* DramaSearchTableViewCell.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -300,6 +339,8 @@
 				DE8913162B6D11A4008E561C /* DramaCreditsCollectionViewCell.swift in Sources */,
 				DECC36B32B68F766008E8B41 /* AppDelegate.swift in Sources */,
 				DE8913142B6D0B9A008E561C /* MainTabBarViewController.swift in Sources */,
+				DE7D55F92B7890FD0060BE42 /* ProfileTextField.swift in Sources */,
+				DE7D55F42B7889F00060BE42 /* ProfileViewController.swift in Sources */,
 				DECC36C82B68F8E2008E8B41 /* UIView+Extension.swift in Sources */,
 				DE8912FF2B6A63A3008E561C /* DramaViewController.swift in Sources */,
 				DECC36CB2B69C643008E8B41 /* TMDBAPIManager.swift in Sources */,
@@ -317,8 +358,11 @@
 				DECC36F32B6A18A2008E8B41 /* MediaCollectionViewCell.swift in Sources */,
 				DE89131A2B6D1B0A008E561C /* CreditsTableViewCell.swift in Sources */,
 				DECC36B52B68F766008E8B41 /* SceneDelegate.swift in Sources */,
+				DE7D55FE2B789EC00060BE42 /* ProfileDetailViewController.swift in Sources */,
 				DECC36EF2B6A159D008E8B41 /* BaseTableViewCell.swift in Sources */,
 				DECC36F12B6A1846008E8B41 /* BaseCollectionViewCell.swift in Sources */,
+				DE7D55182B71B42F0060BE42 /* DramaSearchViewController.swift in Sources */,
+				DE7D55F72B7890040060BE42 /* ProfileLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
